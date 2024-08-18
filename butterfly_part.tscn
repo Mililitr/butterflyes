@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcqjrbkndo1rp"]
+
+[ext_resource type="Shader" path="res://butterfly.gdshader" id="1_u8h30"]
+[ext_resource type="Texture2D" uid="uid://dsbhjry2cii2l" path="res://butterfly2.png" id="2_nxln2"]
+[ext_resource type="ArrayMesh" uid="uid://bxrclkvjxbpxw" path="res://butterfly.obj" id="3_nw2nw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17yd3"]
+render_priority = 0
+shader = ExtResource("1_u8h30")
+shader_parameter/color1 = Color(1, 0.588235, 0, 1)
+shader_parameter/color2 = Color(0, 1, 0.705882, 1)
+shader_parameter/displ_amnt = 0.8
+shader_parameter/displ_speed = 25.0
+shader_parameter/tex = ExtResource("2_nxln2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pl2ps"]
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="butterfly_part" type="Node3D"]
+
+[node name="gpupart" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_17yd3")
+amount = 32
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_pl2ps")
+draw_pass_1 = ExtResource("3_nw2nw")
